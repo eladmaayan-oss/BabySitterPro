@@ -22,6 +22,8 @@ export interface Database {
           languages: string[] | null
           rating_avg: number | null
           rating_count: number | null
+          is_admin: boolean
+          is_banned: boolean
           created_at: string
         }
         Insert: {
@@ -39,6 +41,8 @@ export interface Database {
           languages?: string[] | null
           rating_avg?: number | null
           rating_count?: number | null
+          is_admin?: boolean
+          is_banned?: boolean
           created_at?: string
         }
         Update: {
@@ -56,6 +60,41 @@ export interface Database {
           languages?: string[] | null
           rating_avg?: number | null
           rating_count?: number | null
+          is_admin?: boolean
+          is_banned?: boolean
+          created_at?: string
+        }
+        Relationships: []
+      }
+      invite_tokens: {
+        Row: {
+          id: string
+          token: string
+          note: string | null
+          assigned_email: string | null
+          created_by: string
+          used_by: string | null
+          used_at: string | null
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          token?: string
+          note?: string | null
+          assigned_email?: string | null
+          created_by: string
+          used_by?: string | null
+          used_at?: string | null
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          token?: string
+          note?: string | null
+          assigned_email?: string | null
+          created_by?: string
+          used_by?: string | null
+          used_at?: string | null
           created_at?: string
         }
         Relationships: []

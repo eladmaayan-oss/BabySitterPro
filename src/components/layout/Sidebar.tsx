@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-import { LayoutDashboard, Search, CalendarDays, MessageCircle, User, Baby, LogOut, Languages } from 'lucide-react'
+import { LayoutDashboard, Search, CalendarDays, MessageCircle, User, Baby, LogOut, Languages, ShieldCheck } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useAuth } from '@/hooks/useAuth'
 import { useT } from '@/hooks/useT'
@@ -56,6 +56,24 @@ export function Sidebar() {
       </nav>
 
       <div className="px-3 pb-4 border-t border-gray-100 pt-4 space-y-1">
+        {/* Admin link */}
+        {profile?.is_admin && (
+          <NavLink
+            to="/admin"
+            className={({ isActive }) =>
+              cn(
+                'flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-colors',
+                isActive
+                  ? 'bg-violet-50 text-violet-700'
+                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
+              )
+            }
+          >
+            <ShieldCheck size={20} />
+            {t.admin.title}
+          </NavLink>
+        )}
+
         {/* Language toggle */}
         <button
           onClick={toggle}

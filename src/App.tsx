@@ -15,12 +15,26 @@ import { CalendarPage } from '@/pages/CalendarPage'
 import { Messages } from '@/pages/Messages'
 import { Profile } from '@/pages/Profile'
 import { BabysitterProfile } from '@/pages/BabysitterProfile'
+import { Admin } from '@/pages/Admin'
 import { NotFound } from '@/pages/NotFound'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const { session, loading } = useAuthStore()
+  const { session, loading, profile } = useAuthStore()
   if (loading) return <PageSpinner />
   if (!session) return <Navigate to="/login" replace />
+  // Sign out banned users
+  if (profile?.is_banned) {
+    supabase.auth.signOut()
+    return <Navigate to="/login" replace />
+  }
+  return <>{children}</>
+}
+
+function AdminRoute({ children }: { children: React.ReactNode }) {
+  const { session, loading, profile } = useAuthStore()
+  if (loading) return <PageSpinner />
+  if (!session) return <Navigate to="/login" replace />
+  if (!profile?.is_admin) return <Navigate to="/dashboard" replace />
   return <>{children}</>
 }
 
@@ -97,6 +111,7 @@ export default function App() {
           <Route path="/messages" element={<Messages />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/babysitter/:id" element={<BabysitterProfile />} />
+          <Route path="/admin" element={<AdminRoute><Admin /></AdminRoute>} />
         </Route>
 
         <Route path="*" element={<NotFound />} />
