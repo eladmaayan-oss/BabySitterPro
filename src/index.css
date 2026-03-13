@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --fc-border-color: #e5e7eb;
+    --fc-button-bg-color: #7c3aed;
+    --fc-button-border-color: #7c3aed;
+    --fc-button-hover-bg-color: #6d28d9;
+    --fc-button-hover-border-color: #6d28d9;
+    --fc-button-active-bg-color: #5b21b6;
+    --fc-event-bg-color: #7c3aed;
+    --fc-event-border-color: #6d28d9;
+    --fc-today-bg-color: #f5f3ff;
+    --fc-highlight-color: #ede9fe;
+    --fc-page-bg-color: #ffffff;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    background-color: #f9fafb;
+    color: #111827;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .fc .fc-toolbar-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1f2937;
+  }
+
+  .fc .fc-button {
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.375rem 0.75rem;
+    text-transform: capitalize;
+  }
+
+  .fc .fc-daygrid-event,
+  .fc .fc-timegrid-event {
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+  }
+}
